@@ -14,5 +14,6 @@ npm install
 ```
 docker-compose up -d
 ```
-5. Hit the endpoint /api/seed/delete-tables to reset the data base to empty state
-6. Hit the endpoint /api/seed/run to insert the date to the DB
+5. Hit the endpoint /api/seed/delete-tables to reset the data base to empty state (GET method)
+6. Hit the endpoint /api/seed/run to insert the date to the DB (GET method)
+7. now you can use the frontend
