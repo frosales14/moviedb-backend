@@ -4,6 +4,7 @@ import { CONFIG_DATABASE } from './common/infraestructure/config-database';
 import { AuthModule } from './auth/auth.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieRatingModule } from './movie-rating/movie-rating.module';
+import { MovieModule } from './movie/movie.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { MovieRatingModule } from './movie-rating/movie-rating.module';
     CONFIG_DATABASE(),
     AuthModule,
     ActorModule,
-    MovieRatingModule
+    MovieRatingModule,
+    MovieModule
   ],
   controllers: [],
   providers: [],
