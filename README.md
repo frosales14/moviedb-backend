@@ -10,7 +10,7 @@
 npm install
 ```
 3. make sure to have the latest .env file, you can check the .env.template as reference
-4. run de proyect with docker
+4. run de project with docker
 ```
 docker-compose up -d
 ```
