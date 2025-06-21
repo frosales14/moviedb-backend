@@ -1,7 +1,11 @@
-
+import { Actor } from 'src/actor/entities/actor.entity';
+import { MovieRating } from 'src/movie-rating/entities/movie-rating.entity';
 import {
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,4 +26,14 @@ export class Movie {
   @Column('text', { default: 'https://placehold.co/308x360' })
   imgUrl?: string;
 
+  @OneToMany(() => MovieRating, (movieRating) => movieRating.movie, {
+    cascade: true,
+  })
+  ratings?: MovieRating[];
+
+  @ManyToMany(() => Actor, (actor) => actor.movies, { cascade: true })
+  @JoinTable({
+    name: 'movies_actors',
+  })
+  actors: Actor[];
 }
