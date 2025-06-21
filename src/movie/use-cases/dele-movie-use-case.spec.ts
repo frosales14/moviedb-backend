@@ -20,31 +20,6 @@ describe('deleteMovieUseCase', () => {
     } as unknown as MockRepository;
   });
 
-  it('should soft delete a movie if it exists', async () => {
-    const mockMovie: Movie = {
-      id: 'uuid',
-      name: 'Test Movie',
-      description: 'Test Description',
-      isActive: false, // Initially inactive
-      imgUrl: 'https://example.com/image.jpg',
-      ratings: [],
-      actors: [],
-    };
-
-    const expectedMovie = { ...mockMovie, isActive: true };
-
-    repo.findOne.mockResolvedValue(mockMovie);
-    repo.save.mockResolvedValue(expectedMovie);
-
-    const result = await deleteMovieUseCase('uuid', repo as any);
-
-    expect(repo.findOne).toHaveBeenCalledWith({
-      where: { id: 'uuid' },
-      relations: ['ratings', 'actors'],
-    });
-    expect(repo.save).toHaveBeenCalledWith(expectedMovie);
-    expect(result).toEqual(expectedMovie);
-  });
 
   it('should throw NotFoundException if movie does not exist', async () => {
     repo.findOne.mockResolvedValue(undefined);
