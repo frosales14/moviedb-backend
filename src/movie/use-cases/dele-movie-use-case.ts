@@ -17,7 +17,7 @@ export const deleteMovieUseCase = async (
   }
 
   try {
-    movie.isActive = true;
+    movie.isActive = false;
     await movieRepository.save(movie);
     return movie;
   } catch {
@@ -25,4 +25,17 @@ export const deleteMovieUseCase = async (
   }
 };
 
-// export const deleteMoviePermanentlyUseCase = (id: string) => { };
+export const deleteMoviePermanentlyUseCase = async (id: string, movieRepository: Repository<Movie>) => {
+  const movie = await movieRepository.findBy({ id });
+
+  if (!movie) {
+    throw new NotFoundException(`movie with id ${id} not found`);
+  }
+
+  try {
+    await movieRepository.remove(movie);
+    return { message: 'Movie deleted successfully' };
+  } catch {
+    throw new InternalServerErrorException('Error deleting movie');
+  }
+};
