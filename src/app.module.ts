@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieRatingModule } from './movie-rating/movie-rating.module';
 import { MovieModule } from './movie/movie.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { MovieModule } from './movie/movie.module';
     AuthModule,
     ActorModule,
     MovieRatingModule,
-    MovieModule
+    MovieModule,
+    SeedModule
   ],
   controllers: [],
   providers: [],
