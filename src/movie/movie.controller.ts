@@ -22,7 +22,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('movie')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  constructor(private readonly movieService: MovieService) { }
 
   @UseGuards(AuthGuard())
   @Post()
@@ -38,7 +38,7 @@ export class MovieController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.movieService.findOne(id);
   }
 

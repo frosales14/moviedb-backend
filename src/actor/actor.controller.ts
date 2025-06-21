@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   UseGuards,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { ActorService } from './actor.service';
 import { CreateActorDto } from './dto/create-actor.dto';
@@ -21,7 +22,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('actor')
 export class ActorController {
-  constructor(private readonly actorService: ActorService) {}
+  constructor(private readonly actorService: ActorService) { }
 
   @UseGuards(AuthGuard())
   @Post()
@@ -37,7 +38,7 @@ export class ActorController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.actorService.findOne(id);
   }
 
@@ -51,13 +52,13 @@ export class ActorController {
 
   @UseGuards(AuthGuard())
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateActorDto: UpdateActorDto) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateActorDto: UpdateActorDto) {
     return this.actorService.update(id, updateActorDto);
   }
 
   @UseGuards(AuthGuard())
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.actorService.remove(id);
   }
 }

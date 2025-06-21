@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   UseGuards,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { MovieRatingService } from './movie-rating.service';
 import { CreateMovieRatingDto } from './dto/create-movie-rating.dto';
@@ -17,7 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('movie-rating')
 export class MovieRatingController {
-  constructor(private readonly movieRatingService: MovieRatingService) {}
+  constructor(private readonly movieRatingService: MovieRatingService) { }
 
   @UseGuards(AuthGuard())
   @Post()
@@ -31,14 +32,14 @@ export class MovieRatingController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.movieRatingService.findOne(id);
   }
 
   @UseGuards(AuthGuard())
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateMovieRatingDto: UpdateMovieRatingDto,
   ) {
     return this.movieRatingService.update(id, updateMovieRatingDto);
@@ -46,7 +47,7 @@ export class MovieRatingController {
 
   @UseGuards(AuthGuard())
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.movieRatingService.remove(id);
   }
 }
