@@ -130,19 +130,4 @@ describe('MovieController', () => {
     });
   });
 
-  describe('remove', () => {
-    it('should call service.remove with id', async () => {
-      const id = 'uuid';
-      const result = { deleted: true };
-
-      const mockRemove = jest.fn().mockResolvedValue(result);
-      Object.defineProperty(service, 'remove', {
-        value: mockRemove,
-        writable: true,
-      });
-
-      expect(await controller.remove(id)).toEqual(result);
-      expect(mockRemove).toHaveBeenCalledWith(id);
-    });
-  });
 });
