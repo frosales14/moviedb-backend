@@ -10,6 +10,7 @@ import {
 } from 'src/common/dto/pagination.dto';
 import {
   createMovieUseCase,
+  deleteMoviePermanentlyUseCase,
   deleteMovieUseCase,
   FindMovieByNameUseCase,
   FindOneMovieUseCase,
@@ -30,7 +31,7 @@ export class MovieService {
 
     @InjectRepository(Actor)
     private readonly actorRepository: Repository<Actor>,
-  ) {}
+  ) { }
 
   async create(createMovieDto: CreateMovieDto) {
     return createMovieUseCase(createMovieDto, this.movieRepository);
@@ -61,6 +62,10 @@ export class MovieService {
       this.movieRatingRepository,
       this.actorRepository,
     );
+  }
+
+  async deletePermanently(id: string) {
+    return deleteMoviePermanentlyUseCase(id, this.movieRepository);
   }
 
   async remove(id: string) {

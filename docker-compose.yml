@@ -19,6 +19,7 @@ services:
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}
       PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
       NODE_ENV: ${NODE_ENV}
 
   moviesdb:

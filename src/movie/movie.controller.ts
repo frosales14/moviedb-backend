@@ -22,7 +22,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('movie')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  constructor(private readonly movieService: MovieService) { }
 
   @UseGuards(AuthGuard())
   @Post()
@@ -62,6 +62,6 @@ export class MovieController {
   @UseGuards(AuthGuard())
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
-    return this.movieService.remove(id);
+    return this.movieService.deletePermanently(id);
   }
 }
