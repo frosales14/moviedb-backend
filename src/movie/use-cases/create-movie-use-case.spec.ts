@@ -49,7 +49,7 @@ describe('createMovieUseCase', () => {
       imgUrl: '',
     };
     await expect(createMovieUseCase(dto, repo as any)).rejects.toThrow(
-      InternalServerErrorException
+      InternalServerErrorException,
     );
   });
 });

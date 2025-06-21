@@ -2,7 +2,10 @@ import {
   FindOneMovieUseCase,
   FindMovieByNameUseCase,
 } from './find-one-movie-use-case';
-import { NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import {
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Movie } from '../entities/movie.entity';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
@@ -74,7 +77,11 @@ describe('FindMovieByNameUseCase', () => {
       createQueryBuilder: jest.fn().mockReturnValue(mockQueryBuilder),
     } as unknown as MockRepository;
 
-    const result = await FindMovieByNameUseCase('Test', mockPaginationDto, repo as any);
+    const result = await FindMovieByNameUseCase(
+      'Test',
+      mockPaginationDto,
+      repo as any,
+    );
 
     expect(result.data).toEqual(mockMovies);
     expect(result.pagination).toEqual({
@@ -101,7 +108,7 @@ describe('FindMovieByNameUseCase', () => {
     } as unknown as MockRepository;
 
     await expect(
-      FindMovieByNameUseCase('Test', mockPaginationDto, repo as any)
+      FindMovieByNameUseCase('Test', mockPaginationDto, repo as any),
     ).rejects.toThrow(InternalServerErrorException);
   });
 });

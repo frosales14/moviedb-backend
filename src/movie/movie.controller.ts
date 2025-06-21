@@ -22,7 +22,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('movie')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) { }
+  constructor(private readonly movieService: MovieService) {}
 
   @UseGuards(AuthGuard())
   @Post()

@@ -15,9 +15,9 @@ import { SeedModule } from './seed/seed.module';
     ActorModule,
     MovieRatingModule,
     MovieModule,
-    SeedModule
+    SeedModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

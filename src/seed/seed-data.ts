@@ -1,4 +1,5 @@
 import { CreateActorDto } from 'src/actor/dto/create-actor.dto';
+import { hashSync } from 'bcrypt';
 
 const actors: CreateActorDto[] = [
   {
@@ -1205,7 +1206,7 @@ export const initialData = {
   users: [
     {
       email: 'admin@gmail.com',
-      password: '123456',
+      password: hashSync('123456', 10),
       name: 'Admin',
     },
   ],

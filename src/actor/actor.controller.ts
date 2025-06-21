@@ -22,7 +22,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('actor')
 export class ActorController {
-  constructor(private readonly actorService: ActorService) { }
+  constructor(private readonly actorService: ActorService) {}
 
   @UseGuards(AuthGuard())
   @Post()
@@ -52,7 +52,10 @@ export class ActorController {
 
   @UseGuards(AuthGuard())
   @Patch(':id')
-  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateActorDto: UpdateActorDto) {
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateActorDto: UpdateActorDto,
+  ) {
     return this.actorService.update(id, updateActorDto);
   }
 
